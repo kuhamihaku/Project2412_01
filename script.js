@@ -1,17 +1,38 @@
-let score = 0;
+const dialogueText = document.getElementById("dialogue-text");
+const choices = document.querySelectorAll(".choice");
+const result = document.getElementById("result");
 
-const scoreDisplay = document.getElementById("score");
-const clickButton = document.getElementById("clickButton");
-const messageDisplay = document.getElementById("message");
+let affection = 0; // 好感度
 
-clickButton.addEventListener("click", () => {
-    score++;
-    scoreDisplay.textContent = `Score: ${score}`;
+choices.forEach(choice => {
+    choice.addEventListener("click", () => {
+        const reaction = choice.getAttribute("data-reaction");
 
-    if (score >= 10) {
-        messageDisplay.textContent = "You win!";
-        clickButton.disabled = true;
-        clickButton.style.backgroundColor = "#95a5a6";
-        clickButton.style.cursor = "not-allowed";
-    }
+        // 選択肢による反応を分岐
+        if (reaction === "positive") {
+            dialogueText.textContent = "「嬉しい！ありがとう！」";
+            affection += 10;
+        } else if (reaction === "neutral") {
+            dialogueText.textContent = "「そうなんだ。まあまあだね。」";
+            affection += 5;
+        } else if (reaction === "negative") {
+            dialogueText.textContent = "「そっか…ちょっと残念だな。」";
+            affection -= 5;
+        }
+
+        // 好感度を結果表示
+        updateResult();
+    });
 });
+
+function updateResult() {
+    if (affection >= 20) {
+        result.textContent = "彼女はあなたに好意を持ち始めた！";
+    } else if (affection >= 10) {
+        result.textContent = "彼女は少し気になっている様子だ。";
+    } else if (affection < 0) {
+        result.textContent = "彼女はちょっと悲しそうだ…";
+    } else {
+        result.textContent = "彼女はまだ普通の態度だ。";
+    }
+}
