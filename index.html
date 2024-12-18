@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Click the Button!</title>
+    <title>恋愛シミュレーション</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="game">
-        <h1>Click the Button!</h1>
-        <p id="score">Score: 0</p>
-        <button id="clickButton">Click Me!</button>
-        <p id="message"></p>
+    <div id="game-container">
+        <div id="character">
+            <img src="character.png" alt="ヒロイン" id="character-image">
+        </div>
+        <div id="dialogue">
+            <p id="dialogue-text">「こんにちは！今日は何を話そうか？」</p>
+        </div>
+        <div id="choices">
+            <button class="choice" data-reaction="positive">「元気そうだね！」</button>
+            <button class="choice" data-reaction="neutral">「まあ普通かな…」</button>
+            <button class="choice" data-reaction="negative">「なんでもないよ。」</button>
+        </div>
+        <div id="result"></div>
     </div>
     <script src="script.js"></script>
 </body>
