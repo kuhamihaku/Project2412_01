@@ -1,38 +1,42 @@
-const dialogueText = document.getElementById("dialogue-text");
-const choices = document.querySelectorAll(".choice");
-const result = document.getElementById("result");
+// メニュー切り替え処理
+const menuButtons = document.querySelectorAll(".menu-button");
+const pages = document.querySelectorAll(".page");
 
-let affection = 0; // 好感度
+menuButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const targetPage = button.getAttribute("data-target");
 
-choices.forEach(choice => {
-    choice.addEventListener("click", () => {
-        const reaction = choice.getAttribute("data-reaction");
+        // すべてのページを非表示
+        pages.forEach(page => page.classList.remove("active"));
 
-        // 選択肢による反応を分岐
-        if (reaction === "positive") {
-            dialogueText.textContent = "「嬉しい！ありがとう！」";
-            affection += 10;
-        } else if (reaction === "neutral") {
-            dialogueText.textContent = "「そうなんだ。まあまあだね。」";
-            affection += 5;
-        } else if (reaction === "negative") {
-            dialogueText.textContent = "「そっか…ちょっと残念だな。」";
-            affection -= 5;
-        }
-
-        // 好感度を結果表示
-        updateResult();
+        // 対象ページを表示
+        document.getElementById(targetPage).classList.add("active");
     });
 });
 
-function updateResult() {
-    if (affection >= 20) {
-        result.textContent = "彼女はあなたに好意を持ち始めた！";
-    } else if (affection >= 10) {
-        result.textContent = "彼女は少し気になっている様子だ。";
-    } else if (affection < 0) {
-        result.textContent = "彼女はちょっと悲しそうだ…";
-    } else {
-        result.textContent = "彼女はまだ普通の態度だ。";
+// キャラ詳細表示
+const characterButtons=document.querySelectorAll(".character-button");
+const characterDetail =document.getElementById("character-detail");
+
+characterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const charId =button.getAttribute("data-char");
+        characterDetail.innerHTML = `<p>キャラクター${charId}の詳細情報が表示されます。</p>`;
+    });
+});
+
+// 探索進行度
+const stageButton =document.querySelector(".stage-button");
+const progressPercentage= document.getElementById("progress-percentage");
+
+let progress=0;
+stageButton.addEventListener("click", () => {
+    if(progress < 100){
+        progress += 10;
+        progressPercentage.textContent=`${progress}%`;
+
+        if(progress===100){
+            alert("探索完了");
+        }
     }
-}
+});

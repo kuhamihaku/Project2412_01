@@ -7,19 +7,70 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- メニューバー -->
+    <nav id="menu-bar">
+        <button class="menu-button" data-target="home">待機</button>
+        <button class="menu-button" data-target="character">人物</button>
+        <button class="menu-button" data-target="story">物語</button>
+        <button class="menu-button" data-target="explore">探索</button>
+        <button class="menu-button" data-target="home-base">自宅</button>
+        <button class="menu-button" data-target="others">その他</button>
+    </nav>
+
+    <!-- コンテンツエリア -->
     <div id="game-container">
-        <div id="character">
-            <img src="character.png" alt="ヒロイン" id="character-image">
+        <!-- 待機-->
+        <div id="home" class="page active">
+            <h1>待機</h1>
+            <button class="action-button">ミッション</button>
+            <button class="action-button">交換所</button>
         </div>
-        <div id="dialogue">
-            <p id="dialogue-text">「こんにちは！今日は何を話そうか？」</p>
+
+        <!-- キャラクター -->
+        <div id="character" class="page">
+            <h1>人物</h1>
+            <div id="character-list">
+                <button class="character-button" data-char="1">キャラクターA</button>
+                <button class="character-button" data-char="2">キャラクターB</button>
+                <button class="character-button" data-char="3">キャラクターC</button>
+            </div>
+            <div id="character-detail">
+                <p>キャラ詳細</p>
+            </div>
         </div>
-        <div id="choices">
-            <button class="choice" data-reaction="positive">「元気そうだね！」</button>
-            <button class="choice" data-reaction="neutral">「まあ普通かな…」</button>
-            <button class="choice" data-reaction="negative">「なんでもないよ。」</button>
+
+        <!-- 物語 -->
+        <div id="story" class="page">
+           <h1>物語</h1>
+           <p>物語一覧</p>
         </div>
-        <div id="result"></div>
+
+        <!-- 探索 -->
+        <div id="explore" class="page">
+            <h1>探索</h1>
+            <p>ステージをクリックして素材集め</p>
+            <button class ="stage-button" data-stage="1">ステージ1</button>
+            <div id="explore-progress">
+                <p>進行度:<span id="progress-percentage">0%</span></p>
+            </div>
+        </div>
+
+        <!-- 自宅 -->
+        <div id="home-base" class="page">
+            <h1>自宅</h1>
+            <button class="action-button">素材確認</button>
+            <button class="action-button">素材合成</button>
+            <button class="action-button">交換</button>
+        </div>
+
+        <!-- その他 -->
+        <div id="others" class="page">
+            <h1>その他</h1>
+            <button class="action-button">設定</button>
+            <button class="action-button">画集</button>
+            <button class="action-button">案内</button>
+        </div>
+
     </div>
     <script src="script.js"></script>
 </body>
